@@ -1,14 +1,14 @@
 <script>
-    export let type;
-    export let caption;
-    export let href;
-    export let mode;
+    export let type = "button";
+    export let href = null;
+    export let mode = null;
+    export let color = null;
 </script>
 
 {#if href}
-    <a {href}>{caption}</a>
+    <a {href}><slot /></a>
 {:else}
-    <button class={mode} {type}>{caption}</button>
+    <button class="{mode} {color}" {type} on:click><slot /></button>
 {/if}
 
 <style>
@@ -33,8 +33,8 @@
     button:active,
     a:hover,
     a:active {
-        background: #99ddcc;
-        border-color: #99ddcc;
+        background: #ffe2e2;
+        border-color: #ffe2e2;
         box-shadow: 1px 1px 8px rgba(77, 51, 51, 0.26);
     }
 
@@ -67,8 +67,9 @@
 
     .outline:hover,
     .outline:active {
-        background: #ffc7de;
+        background: #ff6e6e;
         box-shadow: none;
+        color: #ccc;
     }
 
     .outline:disabled,
@@ -79,12 +80,14 @@
     }
 
     .outline.success {
-        border-color: #01a129;
-        color: #01a129;
+        border-color: #99ddcc;
+        color: #99ddcc;
     }
 
     .outline.success:hover,
     .outline.success:active {
-        background: #c2ffd1;
+        border-color: #ffc7de;
+        color: #fff;
+        background: #ffc7de;
     }
 </style>
